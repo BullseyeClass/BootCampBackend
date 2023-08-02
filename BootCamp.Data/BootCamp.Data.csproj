@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commons\" />
+    <Folder Include="Context\" />
+    <Folder Include="Entities\" />
+    <Folder Include="EntityConfiguration\" />
+    <Folder Include="ExtentionMethod\" />
+    <Folder Include="Seed\" />
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
+</Project>
