@@ -6,15 +6,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Microsoft.EntityFrameworkCore.SqlServer;
 
 #nullable disable
 
 namespace BootCamp.Data.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20230808074917_initial-migration")]
-    partial class initialmigration
+    [Migration("20230808101419_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
