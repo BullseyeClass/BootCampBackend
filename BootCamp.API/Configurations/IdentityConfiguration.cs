@@ -15,7 +15,7 @@ namespace BootCamp.API.Configurations
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 8;
                 options.Password.RequireDigit = true;
-                options.SignIn.RequireConfirmedEmail = true;
+                //options.SignIn.RequireConfirmedEmail = true;
             })
             .AddEntityFrameworkStores<MyAppContext>()
             .AddDefaultTokenProviders();

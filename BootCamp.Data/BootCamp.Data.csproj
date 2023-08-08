@@ -10,7 +10,6 @@
     <Folder Include="EntityConfiguration\" />
     <Folder Include="ExtentionMethod\" />
     <Folder Include="Seed\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
   <ItemGroup>

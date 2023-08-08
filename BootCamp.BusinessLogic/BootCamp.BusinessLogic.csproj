@@ -9,8 +9,15 @@
   <ItemGroup>
     <Folder Include="Configuration\" />
     <Folder Include="Utilities\" />
-    <Folder Include="Services\Implementations\" />
-    <Folder Include="Services\Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BootCamp.Data\BootCamp.Data.csproj" />
+    <ProjectReference Include="..\BootCamp.DTO\BootCamp.DTO.csproj" />
   </ItemGroup>
 
 </Project>

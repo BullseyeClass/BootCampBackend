@@ -18,7 +18,7 @@ namespace BootCamp.Data.Context
 
         public DbSet<Address> Addresses { get; set; }
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
-        public DbSet<Admin> Admins { get; set; }
+        //public DbSet<Admin> Admins { get; set; }
         public DbSet<Test> Tests { get; set; }
     }
 
