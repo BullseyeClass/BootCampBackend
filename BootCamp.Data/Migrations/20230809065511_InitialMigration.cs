@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BootCamp.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,25 +49,6 @@ namespace BootCamp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tests",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    StudentId = table.Column<string>(type: "TEXT", nullable: false),
-                    Score = table.Column<int>(type: "INTEGER", nullable: false),
-                    TestType = table.Column<string>(type: "TEXT", nullable: false),
-                    IsPassed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedBy = table.Column<Guid>(type: "TEXT", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UpdatedBy = table.Column<Guid>(type: "TEXT", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tests", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -211,7 +192,11 @@ namespace BootCamp.Data.Migrations
                     Extension = table.Column<string>(type: "TEXT", nullable: false),
                     Number = table.Column<string>(type: "TEXT", nullable: false),
                     UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    TraineeId = table.Column<string>(type: "TEXT", nullable: true)
+                    TraineeId = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedBy = table.Column<Guid>(type: "TEXT", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -221,6 +206,32 @@ namespace BootCamp.Data.Migrations
                         column: x => x.TraineeId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tests",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    StudentId = table.Column<string>(type: "TEXT", nullable: false),
+                    Score = table.Column<int>(type: "INTEGER", nullable: false),
+                    TestType = table.Column<string>(type: "TEXT", nullable: false),
+                    IsPassed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    TraineeId = table.Column<string>(type: "TEXT", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedBy = table.Column<Guid>(type: "TEXT", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tests_AspNetUsers_TraineeId",
+                        column: x => x.TraineeId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -268,6 +279,11 @@ namespace BootCamp.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_PhoneNumbers_TraineeId",
                 table: "PhoneNumbers",
+                column: "TraineeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tests_TraineeId",
+                table: "Tests",
                 column: "TraineeId");
         }
 

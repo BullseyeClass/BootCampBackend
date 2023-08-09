@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BootCamp.Data.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20230809063738_AddingTraineeRelation")]
-    partial class AddingTraineeRelation
+    [Migration("20230809065511_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
