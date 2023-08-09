@@ -80,6 +80,12 @@ namespace BootCamp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Extension")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -90,6 +96,12 @@ namespace BootCamp.Data.Migrations
 
                     b.Property<string>("TraineeId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -128,6 +140,10 @@ namespace BootCamp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TraineeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -135,6 +151,8 @@ namespace BootCamp.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TraineeId");
 
                     b.ToTable("Tests");
                 });
@@ -367,6 +385,17 @@ namespace BootCamp.Data.Migrations
                     b.Navigation("Trainee");
                 });
 
+            modelBuilder.Entity("BootCamp.Data.Entities.Test", b =>
+                {
+                    b.HasOne("BootCamp.Data.Entities.Trainee", "Trainee")
+                        .WithMany("Tests")
+                        .HasForeignKey("TraineeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Trainee");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -423,6 +452,8 @@ namespace BootCamp.Data.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("PhoneNumbers");
+
+                    b.Navigation("Tests");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,41 @@
+[
+  {
+    "ID": "bd65c81e-5e2b-41fb-a9ab-c0c5481eb1b2",
+    "CreatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "CreatedDate": "2023-08-09T11:30:00Z",
+    "UpdatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "UpdatedDate": "2023-08-09T14:00:00Z",
+    "UserId": "a375b77c-9026-4f61-9f54-0b9a319f8bca",
+    "PostalCode": "100001",
+    "MainAddress": "22 ogunoloko St",
+    "City": "Oshodi",
+    "State": "Lagos",
+    "Country": "Nigeria"
+  },
+  {
+    "ID": "92c4c09d-bc7f-4704-b2b6-097ef5c6d588",
+    "CreatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "CreatedDate": "2023-08-10T10:00:00Z",
+    "UpdatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "UpdatedDate": "2023-08-10T12:30:00Z",
+    "UserId": "ed0b76e9-23c5-4820-ae11-6f6c04e758f2",
+    "PostalCode": "100275",
+    "MainAddress": "24 mafoluku St",
+    "City": "Oshodi",
+    "State": "Lagos",
+    "Country": "Nigeria"
+  },
+  {
+    "ID": "15e1796d-423b-45d1-bc50-9d1aa47b8677",
+    "CreatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "CreatedDate": "2023-08-11T10:15:00Z",
+    "UpdatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "UpdatedDate": "2023-08-11T12:45:00Z",
+    "UserId": "23b8a53c-f0d2-4a78-bab9-9a0d367b6d1e",
+    "PostalCode": "900001",
+    "MainAddress": "23 Brown St",
+    "City": "Oshodi",
+    "State": "Lagos",
+    "Country": "Nigeria"
+  }
+]

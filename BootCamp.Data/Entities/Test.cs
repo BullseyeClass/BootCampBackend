@@ -13,5 +13,7 @@ namespace BootCamp.Data.Entities
         public int Score { get; set; }
         public string TestType { get; set; }
         public bool IsPassed { get; set; }
+        public string TraineeId { get; set; }
+        public virtual Trainee Trainee { get; set; }
     }
 }
