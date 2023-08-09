@@ -8,7 +8,7 @@ namespace BootCamp.API.Configurations
         public static void AddDbConfig(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<MyAppContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
         }
     }
 }
