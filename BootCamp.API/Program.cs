@@ -1,4 +1,8 @@
 using BootCamp.API.Configurations;
+using BootCamp.Data.Context;
+using BootCamp.Data.Entities;
+using BootCamp.Data.Seed;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,5 +31,13 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// seeding method here
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+var userManager = services.GetRequiredService<UserManager<Trainee>>();
+var dbContext = services.GetRequiredService<MyAppContext>();
+await Seeder.Seed(roleManager, userManager, dbContext);
 
 app.Run();

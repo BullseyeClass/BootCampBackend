@@ -1,0 +1,62 @@
+[
+  {
+    "Id": "ddb54e8b-5bbd-4141-b3b7-365ce354f4d1",
+    "CreatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "CreatedDate": "2023-08-09T15:00:00Z",
+    "UpdatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "UpdatedDate": "2023-08-09T16:30:00Z",
+    "TraineeId": "a375b77c-9026-4f61-9f54-0b9a319f8bca",
+    "Score": 85,
+    "TestType": "Math",
+    "IsPassed": true,
+    "StudentId":  "123"
+  },
+  {
+    "Id": "1cbe35e9-7bfa-4f95-b39b-1b5f657d0b07",
+    "CreatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "CreatedDate": "2023-08-09T15:30:00Z",
+    "UpdatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "UpdatedDate": "2023-08-09T17:00:00Z",
+    "TraineeId": "a375b77c-9026-4f61-9f54-0b9a319f8bca",
+    "Score": 92,
+    "TestType": "Science",
+    "IsPassed": true,
+    "StudentId": "1234"
+  },
+  {
+    "Id": "a48f35d0-1687-4e7c-85f7-cded7f833a9b",
+    "CreatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "CreatedDate": "2023-08-10T15:00:00Z",
+    "UpdatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "UpdatedDate": "2023-08-10T16:30:00Z",
+    "TraineeId": "ed0b76e9-23c5-4820-ae11-6f6c04e758f2",
+    "Score": 78,
+    "TestType": "English",
+    "IsPassed": false,
+    "StudentId": "1235"
+  },
+  {
+    "Id": "93aa87f1-7555-4ecb-8c5e-c5059c7d5b7d",
+    "CreatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "CreatedDate": "2023-08-11T14:00:00Z",
+    "UpdatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "UpdatedDate": "2023-08-11T16:00:00Z",
+    "TraineeId": "23b8a53c-f0d2-4a78-bab9-9a0d367b6d1e",
+    "Score": 95,
+    "TestType": "History",
+    "IsPassed": true,
+    "StudentId": "1236"
+  },
+  {
+    "Id": "bb0d05c6-5f4a-4be0-ba5e-00e45b76a347",
+    "CreatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "CreatedDate": "2023-08-11T14:30:00Z",
+    "UpdatedBy": "ddde9e66-597f-4c2c-9cc7-621de7a09c77",
+    "UpdatedDate": "2023-08-11T16:30:00Z",
+    "TraineeId": "23b8a53c-f0d2-4a78-bab9-9a0d367b6d1e",
+    "Score": 62,
+    "TestType": "Geography",
+    "IsPassed": false,
+    "StudentId": "1237"
+  }
+]

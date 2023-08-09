@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="EntityConfiguration\" />
     <Folder Include="ExtentionMethod\" />
-    <Folder Include="Seed\" />
   </ItemGroup>
 
   <ItemGroup>

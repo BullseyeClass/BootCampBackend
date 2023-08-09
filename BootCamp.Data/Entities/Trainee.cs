@@ -15,5 +15,6 @@ namespace BootCamp.Data.Entities
         public string MiddleName { get; set; } = string.Empty;
         public virtual List<PhoneNumber>? PhoneNumbers { get; set; } = new List<PhoneNumber>();
         public virtual List<Address>? Address { get; set; } = new List<Address>();
+        public virtual List<Test> Tests { get; set; } = new List<Test> ();
     }
 }
