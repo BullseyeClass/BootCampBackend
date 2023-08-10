@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BootCamp.Data.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-<<<<<<<< HEAD:BootCamp.Data/Migrations/20230808101419_InitialMigration.Designer.cs
-    [Migration("20230808101419_InitialMigration")]
+    [Migration("20230809170714_InitialMigration")]
     partial class InitialMigration
-========
-    [Migration("20230809162227_initialmigration")]
-    partial class initialmigration
->>>>>>>> Beta:BootCamp.Data/Migrations/20230809162227_initialmigration.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
