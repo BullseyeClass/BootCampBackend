@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BootCamp.Data.Repository.Interface
+namespace BootCamp.BusinessLogic.Services.Interfaces
 {
-    public interface ITestScoreRepository
+    public interface ITestScoresService
     {
         List<Test> GetTestScoresByUserId(string userId);
     }
