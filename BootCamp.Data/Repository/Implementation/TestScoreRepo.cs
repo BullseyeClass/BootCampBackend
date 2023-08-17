@@ -19,10 +19,10 @@ namespace BootCamp.Data.Repository.Implementation
             _dbContext = dbContext;
         }
 
-        public List<Test> GetTestScoresByUserId(string userId)
+        public List<Test> GetTestScoresByUserId(Guid userId)
         {
             return _dbContext.Tests
-                .Where(ts => ts.StudentId == userId)
+                .Where(ts => ts.Id == userId)
                 .ToList();
         }
     }

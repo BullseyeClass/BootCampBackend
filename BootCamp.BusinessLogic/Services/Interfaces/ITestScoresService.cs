@@ -9,6 +9,6 @@ namespace BootCamp.BusinessLogic.Services.Interfaces
 {
     public interface ITestScoresService
     {
-        List<Test> GetTestScoresByUserId(string userId);
+        List<Test> GetTestScoresByUserId(Guid userId);
     }
 }

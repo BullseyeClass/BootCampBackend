@@ -19,7 +19,7 @@ namespace BootCamp.API.Controllers
 
         [HttpGet("{userId}")]
         [ProducesResponseType(typeof(GenericResponse<TestScoreResponseDTO>), 200)]
-        public IActionResult GetTestScoresByUserId(string userId)
+        public IActionResult GetTestScoresByUserId(Guid userId)
         {
             var testScores =  _testScoresService.GetTestScoresByUserId(userId);
 

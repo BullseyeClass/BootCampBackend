@@ -9,6 +9,6 @@ namespace BootCamp.Data.Repository.Interface
 {
     public interface ITestScoreRepository
     {
-        List<Test> GetTestScoresByUserId(string userId);
+        List<Test> GetTestScoresByUserId(Guid userId);
     }
 }
