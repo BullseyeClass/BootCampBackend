@@ -31,8 +31,6 @@ namespace BootCamp.BusinessLogic.Services.Implementations
         {
             Trainee trainee = new Trainee()
             {
-                FirstName = traineeRegistrationDTO.FirstName,
-                LastName = traineeRegistrationDTO.LastName,
                 Email = traineeRegistrationDTO.Email,
                 UserName = traineeRegistrationDTO.Email.Split('@')[0], 
             };
