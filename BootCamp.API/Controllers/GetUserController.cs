@@ -23,11 +23,7 @@ namespace BootCamp.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Trainee>> GetUserById(string id)
         {
-            //if (string.IsNullOrEmpty(id))
-            //{
-            //    return BadRequest("Invalid ID");
-            //}
-
+            
             var trainee = await _appContext.Users.FindAsync(id);
 
             if (trainee == null)
