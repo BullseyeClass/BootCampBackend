@@ -1,6 +1,7 @@
 ﻿using BootCamp.Data.Context;
 using BootCamp.Data.Entities;
 using BootCamp.Data.Repository.Interface;
+using BootCamp.DTO.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,8 @@ namespace BootCamp.Data.Repository.Implementation
         public List<Test> GetTestScoresByUserId(Guid userId)
         {
             return _dbContext.Tests
-                .Where(ts => ts.Id == userId)
-                .ToList();
+                .Where(ts => ts.TraineeId == userId.ToString())
+                .ToList(); 
         }
     }
 }
