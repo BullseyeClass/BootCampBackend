@@ -33,5 +33,20 @@ namespace BootCamp.API.Controllers
 
             return BadRequest(response);
         }
+
+        [HttpPost("{id}/add-address")]
+        [ProducesResponseType(typeof(GenericResponse<string>), 200)]
+        public async Task<IActionResult> AddAddress(string id, [FromBody] AddressDTO addressDto)
+        {
+            var response = await _traineeService.AddAddressAsync(id, addressDto);
+
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+
+            return BadRequest(response);
+        }
+
     }
 }
