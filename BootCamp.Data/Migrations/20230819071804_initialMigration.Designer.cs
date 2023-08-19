@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BootCamp.Data.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20230809170714_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230819071804_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,6 +57,7 @@ namespace BootCamp.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TraineeId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("UpdatedBy")
@@ -64,10 +65,6 @@ namespace BootCamp.Data.Migrations
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -97,6 +94,7 @@ namespace BootCamp.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TraineeId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("UpdatedBy")
@@ -104,10 +102,6 @@ namespace BootCamp.Data.Migrations
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -373,7 +367,9 @@ namespace BootCamp.Data.Migrations
                 {
                     b.HasOne("BootCamp.Data.Entities.Trainee", "Trainee")
                         .WithMany("Address")
-                        .HasForeignKey("TraineeId");
+                        .HasForeignKey("TraineeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Trainee");
                 });
@@ -382,7 +378,9 @@ namespace BootCamp.Data.Migrations
                 {
                     b.HasOne("BootCamp.Data.Entities.Trainee", "Trainee")
                         .WithMany("PhoneNumbers")
-                        .HasForeignKey("TraineeId");
+                        .HasForeignKey("TraineeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Trainee");
                 });

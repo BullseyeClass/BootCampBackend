@@ -10,4 +10,8 @@
     <Folder Include="Common\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BootCamp.Data\BootCamp.Data.csproj" />
+  </ItemGroup>
+
 </Project>

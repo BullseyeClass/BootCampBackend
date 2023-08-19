@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BootCamp.Data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -82,8 +82,7 @@ namespace BootCamp.Data.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TraineeId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TraineeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -96,7 +95,8 @@ namespace BootCamp.Data.Migrations
                         name: "FK_Addresses_AspNetUsers_TraineeId",
                         column: x => x.TraineeId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,8 +191,7 @@ namespace BootCamp.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TraineeId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TraineeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -205,7 +204,8 @@ namespace BootCamp.Data.Migrations
                         name: "FK_PhoneNumbers_AspNetUsers_TraineeId",
                         column: x => x.TraineeId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
