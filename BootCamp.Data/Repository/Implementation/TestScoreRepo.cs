@@ -2,6 +2,7 @@
 using BootCamp.Data.Entities;
 using BootCamp.Data.Repository.Interface;
 using BootCamp.DTO.Response;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,5 +27,6 @@ namespace BootCamp.Data.Repository.Implementation
                 .Where(ts => ts.TraineeId == userId.ToString())
                 .ToList(); 
         }
+
     }
 }

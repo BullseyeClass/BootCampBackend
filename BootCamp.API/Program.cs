@@ -25,6 +25,9 @@ builder.Services.AddServices();
 builder.Services.AddScoped<ITestScoreRepository, TestScoreRepository>();
 builder.Services.AddScoped<ITestScoresService, TestScoreService>();
 
+builder.Services.AddScoped<IGetUserById, GetUserByIdRepo>();
+builder.Services.AddScoped<IGetUserByIdService, GetUserByIdService>();
+
 
 var app = builder.Build();
 
