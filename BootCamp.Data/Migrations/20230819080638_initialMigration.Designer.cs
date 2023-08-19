@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BootCamp.Data.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20230819071804_initialMigration")]
+    [Migration("20230819080638_initialMigration")]
     partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
