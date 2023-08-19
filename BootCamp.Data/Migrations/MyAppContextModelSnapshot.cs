@@ -55,6 +55,7 @@ namespace BootCamp.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TraineeId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("UpdatedBy")
@@ -62,10 +63,6 @@ namespace BootCamp.Data.Migrations
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -95,6 +92,7 @@ namespace BootCamp.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TraineeId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("UpdatedBy")
@@ -102,10 +100,6 @@ namespace BootCamp.Data.Migrations
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -371,7 +365,9 @@ namespace BootCamp.Data.Migrations
                 {
                     b.HasOne("BootCamp.Data.Entities.Trainee", "Trainee")
                         .WithMany("Address")
-                        .HasForeignKey("TraineeId");
+                        .HasForeignKey("TraineeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Trainee");
                 });
@@ -380,7 +376,9 @@ namespace BootCamp.Data.Migrations
                 {
                     b.HasOne("BootCamp.Data.Entities.Trainee", "Trainee")
                         .WithMany("PhoneNumbers")
-                        .HasForeignKey("TraineeId");
+                        .HasForeignKey("TraineeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Trainee");
                 });
