@@ -216,7 +216,6 @@ namespace BootCamp.Data.Migrations
                     StudentId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Score = table.Column<int>(type: "int", nullable: false),
                     TestType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsPassed = table.Column<bool>(type: "bit", nullable: false),
                     TraineeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),

@@ -120,9 +120,6 @@ namespace BootCamp.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsPassed")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Score")
                         .HasColumnType("int");
 

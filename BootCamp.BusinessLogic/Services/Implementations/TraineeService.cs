@@ -6,11 +6,15 @@ using BootCamp.DTO;
 using BootCamp.DTO.Request;
 using BootCamp.DTO.Response;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+
 
 namespace BootCamp.BusinessLogic.Services.Implementations
 {
@@ -93,5 +97,29 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             }
         }
 
+        public async Task<GenericResponse<List<AddressDTO>>> GetAddressAsync(string id)
+        {
+            var userAddress = await _userManager.FindByIdAsync(id);
+
+            if (userAddress == null)
+            {
+                return GenericResponse<List<AddressDTO>>.ErrorResponse("Trainee not found.", false);
+            }
+
+            var result = userAddress.Address.Select(a => new AddressDTO
+            {
+                PostalCode = a.PostalCode,
+                MainAddress = a.MainAddress,
+                City = a.City,
+                State = a.State,
+                Country = a.Country
+            }).ToList();
+
+            return GenericResponse<List<AddressDTO>>.SuccessResponse(result);
+        }
+
+
     }
+
 }
+
