@@ -78,7 +78,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
                 Country = addressDto.Country
             };
 
-            trainee.Address.Add(newAddress); // Add the new address to the trainee's addresses
+            trainee.Address.Add(newAddress);
 
             var result = await _userManager.UpdateAsync(trainee);
 
