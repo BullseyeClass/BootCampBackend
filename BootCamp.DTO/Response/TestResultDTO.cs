@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BootCamp.DTO.Response
 {
-    public class TestResultDTO : Test
+    public class TestResultDTO
     {
         public string StudentId { get; set; }
         public int Score { get; set; }
