@@ -6,11 +6,15 @@ using BootCamp.DTO;
 using BootCamp.DTO.Request;
 using BootCamp.DTO.Response;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+
 
 namespace BootCamp.BusinessLogic.Services.Implementations
 {
@@ -19,11 +23,13 @@ namespace BootCamp.BusinessLogic.Services.Implementations
     {
         private readonly UserManager<Trainee> _userManager;
         private readonly IGenericRepo<Trainee> _genericRepo;
+        private readonly MyAppContext _myAppContext;
 
-        public TraineeService(UserManager<Trainee> userManager, IGenericRepo<Trainee> genericRepo)
+        public TraineeService(UserManager<Trainee> userManager, IGenericRepo<Trainee> genericRepo, MyAppContext myAppContext)
         {
             _userManager = userManager;
             _genericRepo = genericRepo;
+            _myAppContext = myAppContext;
         }
 
 
@@ -93,5 +99,32 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             }
         }
 
+        public async Task<GenericResponse<List<AddressDTO>>> GetAddressAsync(string id)
+        {
+            var trainee = await _myAppContext.Users
+                .Include(t => t.Address)
+                .FirstOrDefaultAsync(t => t.Id == id);
+                
+
+            if (trainee == null)
+            {
+                return GenericResponse<List<AddressDTO>>.ErrorResponse("Trainee not found.", false);
+            }
+
+            var result = trainee.Address.Select(a => new AddressDTO
+            {
+                PostalCode = a.PostalCode,
+                MainAddress = a.MainAddress,
+                City = a.City,
+                State = a.State,
+                Country = a.Country
+            }).ToList();
+
+            return GenericResponse<List<AddressDTO>>.SuccessResponse(result);
+        }
+
+
     }
+
 }
+

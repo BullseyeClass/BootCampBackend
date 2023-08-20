@@ -40,20 +40,7 @@ namespace BootCamp.API.Controllers
             return Ok(testScoreDtos);
         }
 
-        [HttpPost("post")]
-        [ProducesResponseType(typeof(GenericResponse<TestResultDTO>), 200)]
-        public async Task<IActionResult> PostTestScore([FromBody]TestResultDTO testResultDTO)
-        {
-            var testScores = await _testScoresService.PostTestScoreAsync(testResultDTO);
 
-            if(testScores == null)
-            {
-                return BadRequest();
-            }
-                return Ok("Test score saved successfully");
- 
-               
-            
-        }
     }
+
 }
