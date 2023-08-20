@@ -3,6 +3,7 @@ using BootCamp.BusinessLogic.Services.Interfaces;
 using BootCamp.DTO.Response;
 using BootCamp.DTO;
 using Microsoft.AspNetCore.Mvc;
+using BootCamp.Data.Entities;
 
 namespace BootCamp.API.Controllers
 {
@@ -30,6 +31,7 @@ namespace BootCamp.API.Controllers
 
             return Ok(testScores);
         }
+
 
     }
 
