@@ -13,6 +13,6 @@ namespace BootCamp.BusinessLogic.Services.Interfaces
     {
         Task<GenericResponse<TraineeRegistrationResponseDTO>> RegistrationAsync(TraineeRegistrationDTO traineeRegistrationDTO);
         Task<GenericResponse<string>> AddAddressAsync(string traineeId, AddressDTO addressDto);
-        Task<List<AddressDTO>> GetAddressesAsync(string traineeId);
+        Task<GenericResponse<List<AddressDTO>>> GetAddressAsync(string id);
     }
 }

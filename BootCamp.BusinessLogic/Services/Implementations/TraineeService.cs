@@ -9,9 +9,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+
 
 namespace BootCamp.BusinessLogic.Services.Implementations
 {
@@ -96,18 +99,16 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             }
         }
 
-
-        public async Task<List<AddressDTO>> GetAddressesAsync(string traineeId)
+        public async Task<GenericResponse<List<AddressDTO>>> GetAddressAsync(string id)
         {
             var trainee = await _myAppContext.Users
                 .Include(t => t.Address)
-                 .FirstOrDefaultAsync(t => t.Id == traineeId);
-
-            //var trainee = await _userManager.FindByIdAsync(traineeId);
+                .FirstOrDefaultAsync(t => t.Id == id);
+                
 
             if (trainee == null)
             {
-                return null;
+                return GenericResponse<List<AddressDTO>>.ErrorResponse("Trainee not found.", false);
             }
 
             var result = trainee.Address.Select(a => new AddressDTO
@@ -119,8 +120,11 @@ namespace BootCamp.BusinessLogic.Services.Implementations
                 Country = a.Country
             }).ToList();
 
-            return result;
+            return GenericResponse<List<AddressDTO>>.SuccessResponse(result);
         }
 
+
     }
+
 }
+
