@@ -13,6 +13,7 @@ using static BootCamp.BusinessLogic.Services.Implementations.TestScoresService;
 using BootCamp.DTO.Request;
 using Microsoft.EntityFrameworkCore;
 using BootCamp.Data.Context;
+using Microsoft.AspNetCore.Identity;
 
 namespace BootCamp.BusinessLogic.Services.Implementations
 {
@@ -24,7 +25,8 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             private readonly ITestScoreRepository _testScoreRepository;
             private readonly MyAppContext _dbContext;
 
-            public TestScoreService(ITestScoreRepository testScoreRepository, MyAppContext dbContext)
+
+            public TestScoreService(UserManager<Trainee> userManager, ITestScoreRepository testScoreRepository, MyAppContext dbContext)
             {
                 _testScoreRepository = testScoreRepository;
                 _dbContext = dbContext;
@@ -41,6 +43,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
 
             public async Task<GenericResponse<TestResultDTO>> PostTestScoreAsync(TestResultDTO testResultDTO)
             {
+
                 if (testResultDTO == null)
                 {
                     throw new ArgumentException("Invalid data");
