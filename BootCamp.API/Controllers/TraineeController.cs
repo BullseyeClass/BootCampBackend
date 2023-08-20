@@ -63,5 +63,26 @@ namespace BootCamp.API.Controllers
       
         }
 
+        [HttpPut("updatePhoneNumber/{traineeId}")]
+        [ProducesResponseType(typeof(GenericResponse<string>), 200)]
+        public async Task<IActionResult> UpdatePhoneNumberAsync(string traineeId, [FromBody] PhoneNumberDTO newPhoneNumber)
+        {
+            // Validate traineeId and newPhoneNumber
+            if (string.IsNullOrEmpty(traineeId) || newPhoneNumber == null)
+            {
+                return BadRequest("Invalid input data.");
+            }
+
+            var response = await _traineeService.UpdatePhoneNumberAsync(traineeId, newPhoneNumber);
+
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+
+            return BadRequest(response);
+        }
     }
+
 }
+

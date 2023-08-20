@@ -123,8 +123,33 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             return GenericResponse<List<AddressDTO>>.SuccessResponse(result);
         }
 
+        public async Task<GenericResponse<string>> UpdatePhoneNumberAsync(string traineeId, PhoneNumberDTO newPhoneNumber)
+        {
+            var trainee = _userManager.Users.FirstOrDefault(t => t.Id == traineeId);
+
+            if (trainee == null)
+            {
+                return GenericResponse<string>.ErrorResponse("Trainee not found.", false);
+            }
+
+            // Update phone number
+            trainee.PhoneNumber = newPhoneNumber.Number;
+
+            // Save changes
+            await _userManager.UpdateAsync(trainee);
+
+            return GenericResponse<string>.SuccessResponse("Phone number updated successfully.");
+        }
 
     }
 
+
+
+
+
+
+
 }
+
+
 
