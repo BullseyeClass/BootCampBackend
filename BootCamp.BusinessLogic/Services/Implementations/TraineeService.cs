@@ -22,8 +22,8 @@ namespace BootCamp.BusinessLogic.Services.Implementations
 
         public TraineeService(UserManager<Trainee> userManager, IGenericRepo<Trainee> genericRepo)
         {
-            this._userManager = userManager;
-            this._genericRepo = genericRepo;
+            _userManager = userManager;
+            _genericRepo = genericRepo;
         }
 
 
@@ -55,6 +55,41 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             {
                 string errors = result.Errors.Aggregate(string.Empty, (current, error) => current + (error.Description + Environment.NewLine));
                 return GenericResponse<TraineeRegistrationResponseDTO>.ErrorResponse(errors, false);
+            }
+        }
+
+
+        public async Task<GenericResponse<string>> AddAddressAsync(string traineeId, AddressDTO addressDto)
+        {
+            var trainee = await _userManager.FindByIdAsync(traineeId);
+
+            if (trainee == null)
+            {
+                return GenericResponse<string>.ErrorResponse("Trainee not found.", false);
+            }
+
+            
+            var newAddress = new Address
+            {
+                PostalCode = addressDto.PostalCode,
+                MainAddress = addressDto.MainAddress,
+                City = addressDto.City,
+                State = addressDto.State,
+                Country = addressDto.Country
+            };
+
+            trainee.Address.Add(newAddress);
+
+            var result = await _userManager.UpdateAsync(trainee);
+
+            if (result.Succeeded)
+            {
+                return GenericResponse<string>.SuccessResponse("Address added successfully");
+            }
+            else
+            {
+                string errors = result.Errors.Aggregate(string.Empty, (current, error) => current + (error.Description + Environment.NewLine));
+                return GenericResponse<string>.ErrorResponse(errors, false);
             }
         }
 
