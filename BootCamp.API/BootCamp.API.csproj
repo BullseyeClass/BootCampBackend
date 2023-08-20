@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BootCamp.BusinessLogic\BootCamp.BusinessLogic.csproj" />
     <ProjectReference Include="..\BootCamp.Data\BootCamp.Data.csproj" />
+    <ProjectReference Include="..\BootCamp.DTO\BootCamp.DTO.csproj" />
   </ItemGroup>
 
 </Project>

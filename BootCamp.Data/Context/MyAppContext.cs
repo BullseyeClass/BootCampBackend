@@ -21,6 +21,7 @@ namespace BootCamp.Data.Context
         //public DbSet<Admin> Admins { get; set; }
         public DbSet<Test> Tests { get; set; }
         public IEnumerable<object> Test { get; internal set; }
+        
     }
 
 }

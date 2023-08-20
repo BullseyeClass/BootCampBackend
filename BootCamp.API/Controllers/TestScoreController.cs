@@ -3,6 +3,7 @@ using BootCamp.BusinessLogic.Services.Interfaces;
 using BootCamp.DTO.Response;
 using BootCamp.DTO;
 using Microsoft.AspNetCore.Mvc;
+using BootCamp.Data.Entities;
 
 namespace BootCamp.API.Controllers
 {
@@ -29,6 +30,21 @@ namespace BootCamp.API.Controllers
             }
 
             return Ok(testScores);
+        }
+
+        [HttpPost("{userId}")]
+        [ProducesResponseType(typeof(GenericResponse<TestResultDTO>), 200)]
+        public IActionResult PostTestScore([FromBody]Test test)
+        {
+            try
+            {
+                _testScoresService.PostTestScore(test);
+                return Ok("Test score saved successfully");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
