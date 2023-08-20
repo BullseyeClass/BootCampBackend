@@ -18,18 +18,26 @@ namespace BootCamp.API.Controllers
             _testScoresService = testScoreService;
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet("{TraineeId)}")]
         [ProducesResponseType(typeof(GenericResponse<TestScoreResponseDTO>), 200)]
-        public IActionResult GetTestScoresByUserId(Guid userId)
+        public IActionResult GetTestScoresByUserId(string traineeId)
         {
-            var testScores =  _testScoresService.GetTestScoresByUserId(userId);
+            var testScores = _testScoresService.GetTestScoresByUserId(traineeId);
 
             if (testScores == null || testScores.Count == 0)
             {
                 return NotFound();
             }
 
-            return Ok(testScores);
+            var testScoreDtos = testScores.Select(ts => new TestScoreResponseDTO
+            {
+                Id = ts.Id.ToString(),
+                TestType = ts.TestType,
+                Score = ts.Score,
+                IsPassed = ts.IsPassed
+            }).ToList();
+
+            return Ok(testScoreDtos);
         }
 
         [HttpPost("post")]

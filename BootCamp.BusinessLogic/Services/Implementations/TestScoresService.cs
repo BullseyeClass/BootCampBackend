@@ -33,9 +33,9 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             }
 
 
-            public List<Test> GetTestScoresByUserId(Guid userId)
+            public List<Test> GetTestScoresByUserId(string traineeId)
             {
-                List<Test> testScore = _testScoreRepository.GetTestScoresByUserId(userId);
+                List<Test> testScore = _testScoreRepository.GetTestScoresByUserId(traineeId);
 
                 return testScore;
 

@@ -12,7 +12,7 @@ namespace BootCamp.BusinessLogic.Services.Interfaces
 {
     public interface ITestScoresService
     {
-        List<Test> GetTestScoresByUserId(Guid userId);
+        List<Test> GetTestScoresByUserId(string traineeId);
         Task<GenericResponse<TestResultDTO>> PostTestScoreAsync(TestResultDTO testResultDTO);
     }
 }
