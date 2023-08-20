@@ -51,7 +51,7 @@ namespace BootCamp.API.Controllers
 
         [HttpGet("{id}/get-address")]
         [ProducesResponseType(typeof(GenericResponse<string>), 200)]
-        public async Task<IActionResult> GetAddress(string id)
+        public async Task<IActionResult> GetAddresses(string id)
         {
             var response = await _traineeService.GetAddressAsync(id);
 
@@ -60,15 +60,7 @@ namespace BootCamp.API.Controllers
                 return Ok(response);
             }
             return BadRequest(response);
-            //try
-            //{
-            //    string address = await _traineeService.GetAddressAsync(id, getAddressDTO);
-            //    return Ok(new GenericResponse<string>{ Data = address });
-            //}
-            //catch (Exception ex)
-            //{
-            //    return StatusCode(500, ex.Message);
-            //}
+      
         }
 
     }
