@@ -12,6 +12,8 @@ namespace BootCamp.BusinessLogic.Services.Interfaces
     public interface ITraineeService
     {
         Task<GenericResponse<TraineeRegistrationResponseDTO>> RegistrationAsync(TraineeRegistrationDTO traineeRegistrationDTO);
+        Task<GenericResponse<string>> UpdatePhoneNumberAsync(string traineeId, PhoneNumberDTO newPhoneNumber);
+
         Task<GenericResponse<string>> AddAddressAsync(string traineeId, AddressDTO addressDto);
         Task<GenericResponse<List<AddressDTO>>> GetAddressAsync(string id);
     }
