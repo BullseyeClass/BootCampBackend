@@ -36,15 +36,13 @@ namespace BootCamp.API.Controllers
         [ProducesResponseType(typeof(GenericResponse<TestResultDTO>), 200)]
         public IActionResult PostTestScore([FromBody]Test test)
         {
-            try
-            {
-                _testScoresService.PostTestScore(test);
+               var testScores = _testScoresService.PostTestScore(test);
+
                 return Ok("Test score saved successfully");
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            
+            
+               
+            
         }
     }
 }
