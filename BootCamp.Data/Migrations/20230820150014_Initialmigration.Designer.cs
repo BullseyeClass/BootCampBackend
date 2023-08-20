@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BootCamp.Data.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20230820121740_Ispassed")]
-    partial class Ispassed
+    [Migration("20230820150014_Initialmigration")]
+    partial class Initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
