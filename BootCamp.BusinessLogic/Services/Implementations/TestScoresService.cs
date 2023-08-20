@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static BootCamp.BusinessLogic.Services.Implementations.TestScoresService;
+using BootCamp.DTO.Request;
 
 namespace BootCamp.BusinessLogic.Services.Implementations
 {
@@ -34,15 +35,16 @@ namespace BootCamp.BusinessLogic.Services.Implementations
 
             }
 
-            public void PostTestScore(Test test)
+            public async Task<GenericResponse<TestResultDTO>> PostTestScoreAsync(TestResultDTO testResultDTO)
             {
 
-                if (test == null)
+                if (testResultDTO == null)
                 {
                     throw new ArgumentException("Invalid data");
                 }
 
-                _testScoreRepository.PostTestScore(test);
+               var testScore = await _testScoreRepository.PostTestScoreAsync(testResultDTO);
+                return testScore;
             }
         }
 

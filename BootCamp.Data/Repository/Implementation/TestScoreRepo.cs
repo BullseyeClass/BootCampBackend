@@ -28,14 +28,14 @@ namespace BootCamp.Data.Repository.Implementation
                 .ToList();
         }
 
-        public void PostTestScore(Test test)
+        public void PostTestScore(TestResultDTO testResultDTO)
         {
             var testScore = new Test
             {
-                StudentId = test.StudentId,
-                Score = (int)test.Score,
-                CreatedOn = (DateTime)test.CreatedOn,
-                CreatedBy = (string)test.CreatedBy
+                StudentId = testResultDTO.StudentId,
+                Score = (int)testResultDTO.Score,
+                CreatedOn = (DateTime)testResultDTO.CreatedOn,
+                CreatedBy = (string)testResultDTO.CreatedBy
             };
 
             _dbContext.Tests.Add(testScore);
