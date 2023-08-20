@@ -48,5 +48,20 @@ namespace BootCamp.API.Controllers
             return BadRequest(response);
         }
 
+
+        [HttpGet("{id}/addresses")]
+        //[ProducesResponseType(typeof(GenericResponse<List<AddressDTO>>), 200)]
+        public async Task<IActionResult> GetAddresses(string id)
+        {
+            var response = await _traineeService.GetAddressesAsync(id);
+
+            if (response == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(response);
+        }
+
     }
 }
