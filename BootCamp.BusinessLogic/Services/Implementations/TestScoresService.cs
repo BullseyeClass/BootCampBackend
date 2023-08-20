@@ -35,18 +35,11 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             }
 
 
-            public List<Test> GetTestScoresByUserId(string traineeId)
+            public async Task<Test> GetTestScoresByUserId(Guid traineeId)
             {
-<<<<<<< HEAD
-                List<Test> testScore = _testScoreRepository.GetTestScoresByUserId(traineeId);
-
-=======
-                List<Test> testScore = new(); /*_testScoreRepository.GetTestScoresByUserId(userId);
-*/
->>>>>>> Beta
-                return testScore;
-
+               return await _genericRepo.GetByIdAysnc(traineeId);
             }
+
 
             public async Task<GenericResponse<TestResultDTO>> PostTestScoreAsync(TestResultDTO testResultDTO)
             {
