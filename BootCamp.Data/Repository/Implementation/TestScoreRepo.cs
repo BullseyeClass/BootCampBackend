@@ -28,19 +28,12 @@ namespace BootCamp.Data.Repository.Implementation
                 .ToList();
         }
 
-        public  PostTestScore(TestResultDTO testResultDTO)
+        public async Task PostTestScoreAsync(Test testScoreEntity)
         {
-            var testScore = new Test
-            {
-                StudentId = testResultDTO.StudentId,
-                Score = (int)testResultDTO.Score,
-                CreatedOn = (DateTime)testResultDTO.CreatedOn,
-                CreatedBy = (string)testResultDTO.CreatedBy
-            };
-
-            _dbContext.Tests.Add(testScore);
-            _dbContext.SaveChanges();
+            await _dbContext.Tests.AddAsync(testScoreEntity);
+            await _dbContext.SaveChangesAsync();
         }
+
     }
-    
+
 }

@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using static BootCamp.BusinessLogic.Services.Implementations.TestScoresService;
 using BootCamp.DTO.Request;
+using Microsoft.EntityFrameworkCore;
+using BootCamp.Data.Context;
 
 namespace BootCamp.BusinessLogic.Services.Implementations
 {
@@ -20,10 +22,12 @@ namespace BootCamp.BusinessLogic.Services.Implementations
         public class TestScoreService : ITestScoresService
         {
             private readonly ITestScoreRepository _testScoreRepository;
+            private readonly MyAppContext _dbContext;
 
-            public TestScoreService(ITestScoreRepository testScoreRepository)
+            public TestScoreService(ITestScoreRepository testScoreRepository, MyAppContext dbContext)
             {
                 _testScoreRepository = testScoreRepository;
+                _dbContext = dbContext;
             }
 
 
@@ -37,15 +41,28 @@ namespace BootCamp.BusinessLogic.Services.Implementations
 
             public async Task<GenericResponse<TestResultDTO>> PostTestScoreAsync(TestResultDTO testResultDTO)
             {
-
                 if (testResultDTO == null)
                 {
                     throw new ArgumentException("Invalid data");
                 }
 
-               var testScore = await _testScoreRepository.PostTestScoreAsync(testResultDTO);
-                return testScore;
+                var testScoreEntity = new Test
+                {
+                    StudentId = testResultDTO.StudentId,
+                    Score = testResultDTO.Score,
+                    CreatedDate = testResultDTO.CreatedDate,
+                    CreatedBy = testResultDTO.CreatedBy,
+                    TestType = testResultDTO.TestType,
+                    TraineeId = testResultDTO.TraineeId,
+                    UpdatedDate = testResultDTO.UpdatedDate,
+                };
+
+                await _testScoreRepository.PostTestScoreAsync(testScoreEntity);
+                await _dbContext.SaveChangesAsync();
+
+                return GenericResponse<TestResultDTO>.SuccessResponse(testResultDTO, "Test score saved successfully");
             }
+
         }
 
     }
