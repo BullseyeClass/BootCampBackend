@@ -28,7 +28,7 @@ namespace BootCamp.Data.Repository.Implementation
                 .ToList();
         }
 
-        public void PostTestScore(TestResultDTO testResultDTO)
+        public  PostTestScore(TestResultDTO testResultDTO)
         {
             var testScore = new Test
             {

@@ -11,6 +11,6 @@ namespace BootCamp.Data.Repository.Interface
     public interface ITestScoreRepository
     {
         List<Test> GetTestScoresByUserId(Guid userId);
-        Task PostTestScore(TestResultDTO testResultDTO);
+        Task<GenericResponse<TestResultDTO>> PostTestScoreAsync(TestResultDTO testResultDTO);
     }
 }
