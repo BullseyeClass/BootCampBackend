@@ -23,7 +23,6 @@ namespace BootCamp.Data.Entities
             }
         }
         public string TraineeId { get; set; }
-        public virtual Trainee Trainee { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
     }

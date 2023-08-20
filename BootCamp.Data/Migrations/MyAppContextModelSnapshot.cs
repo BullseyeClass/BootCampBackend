@@ -383,13 +383,11 @@ namespace BootCamp.Data.Migrations
 
             modelBuilder.Entity("BootCamp.Data.Entities.Test", b =>
                 {
-                    b.HasOne("BootCamp.Data.Entities.Trainee", "Trainee")
+                    b.HasOne("BootCamp.Data.Entities.Trainee", null)
                         .WithMany("Tests")
                         .HasForeignKey("TraineeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Trainee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

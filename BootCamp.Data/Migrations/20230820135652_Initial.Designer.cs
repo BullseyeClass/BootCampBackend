@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BootCamp.Data.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20230820121740_Ispassed")]
-    partial class Ispassed
+    [Migration("20230820135652_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -385,13 +385,11 @@ namespace BootCamp.Data.Migrations
 
             modelBuilder.Entity("BootCamp.Data.Entities.Test", b =>
                 {
-                    b.HasOne("BootCamp.Data.Entities.Trainee", "Trainee")
+                    b.HasOne("BootCamp.Data.Entities.Trainee", null)
                         .WithMany("Tests")
                         .HasForeignKey("TraineeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Trainee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

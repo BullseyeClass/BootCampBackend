@@ -22,21 +22,23 @@ namespace BootCamp.BusinessLogic.Services.Implementations
 
         public class TestScoreService : ITestScoresService
         {
-            private readonly ITestScoreRepository _testScoreRepository;
+            private readonly UserManager<Trainee> _userManager;
+            private readonly IGenericRepo<Test> _genericRepo;
             private readonly MyAppContext _dbContext;
 
 
-            public TestScoreService(UserManager<Trainee> userManager, ITestScoreRepository testScoreRepository, MyAppContext dbContext)
+            public TestScoreService(UserManager<Trainee> userManager, IGenericRepo<Test> genericRepo, MyAppContext dbContext)
             {
-                _testScoreRepository = testScoreRepository;
+                this._userManager = userManager;
+                this._genericRepo = genericRepo;
                 _dbContext = dbContext;
             }
 
 
             public List<Test> GetTestScoresByUserId(Guid userId)
             {
-                List<Test> testScore = _testScoreRepository.GetTestScoresByUserId(userId);
-
+                List<Test> testScore = new(); /*_testScoreRepository.GetTestScoresByUserId(userId);
+*/
                 return testScore;
 
             }
@@ -49,18 +51,24 @@ namespace BootCamp.BusinessLogic.Services.Implementations
                     throw new ArgumentException("Invalid data");
                 }
 
-                var testScoreEntity = new Test
+                var trainee = await _userManager.FindByIdAsync(testResultDTO.TraineeId);
+
+                if (trainee == null)
                 {
+                    throw new ArgumentException("Trainee not found");
+                }
+
+                  var test = new Test
+                   {
                     StudentId = testResultDTO.StudentId,
                     Score = testResultDTO.Score,
-                    CreatedDate = testResultDTO.CreatedDate,
-                    CreatedBy = testResultDTO.CreatedBy,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = trainee.Id,
                     TestType = testResultDTO.TestType,
-                    TraineeId = testResultDTO.TraineeId,
-                    UpdatedDate = testResultDTO.UpdatedDate,
-                };
+                    TraineeId = trainee.Id,
+                   };
 
-                await _testScoreRepository.PostTestScoreAsync(testScoreEntity);
+                await _genericRepo.InsertAsync(test);
                 await _dbContext.SaveChangesAsync();
 
                 return GenericResponse<TestResultDTO>.SuccessResponse(testResultDTO, "Test score saved successfully");
