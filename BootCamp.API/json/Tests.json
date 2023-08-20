@@ -20,7 +20,6 @@
     "TraineeId": "a375b77c-9026-4f61-9f54-0b9a319f8bca",
     "Score": 92,
     "TestType": "Science",
-    "IsPassed": true,
     "StudentId": "1234"
   },
   {
@@ -32,7 +31,6 @@
     "TraineeId": "ed0b76e9-23c5-4820-ae11-6f6c04e758f2",
     "Score": 78,
     "TestType": "English",
-    "IsPassed": false,
     "StudentId": "1235"
   },
   {
@@ -44,7 +42,6 @@
     "TraineeId": "23b8a53c-f0d2-4a78-bab9-9a0d367b6d1e",
     "Score": 95,
     "TestType": "History",
-    "IsPassed": true,
     "StudentId": "1236"
   },
   {
@@ -56,7 +53,6 @@
     "TraineeId": "23b8a53c-f0d2-4a78-bab9-9a0d367b6d1e",
     "Score": 62,
     "TestType": "Geography",
-    "IsPassed": false,
     "StudentId": "1237"
   }
 ]

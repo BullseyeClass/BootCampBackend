@@ -1,6 +1,7 @@
 ﻿using BootCamp.Data.Commons;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace BootCamp.Data.Entities
         public string StudentId { get; set; }
         public int Score { get; set; }
         public string TestType { get; set; }
+       
+        [NotMapped]
         public bool IsPassed
         {
             get
@@ -21,5 +24,7 @@ namespace BootCamp.Data.Entities
         }
         public string TraineeId { get; set; }
         public virtual Trainee Trainee { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

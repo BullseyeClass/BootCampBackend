@@ -1,4 +1,5 @@
 ﻿using BootCamp.Data.Entities;
+using BootCamp.Data.Repository.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace BootCamp.Data.Repository.Interface
     public interface ITestScoreRepository
     {
         List<Test> GetTestScoresByUserId(Guid userId);
+        Task PostTestScoreAsync(Test testScoreEntity);
     }
 }
