@@ -37,17 +37,13 @@ namespace BootCamp.BusinessLogic.Services.Implementations
 
             public async Task<GenericResponse<List<TestScoreResponseDTO>>> GetByIdAsync(string id)
             {
-
                 var trainee = await _dbContext.Users
                 .Include(t => t.Tests)
                 .FirstOrDefaultAsync(t => t.Id == id);
-                //var testScores = await _genericRepo.GetByIdAysnc(id);
-
-                //var trainee = await _userManager.FindByIdAsync(testScores.TraineeId);
 
                 if (trainee == null)
                 {
-                    throw new ArgumentException("Trainee not found");
+                    return GenericResponse<List<TestScoreResponseDTO>>.ErrorResponse("Trainee Not Found", false); 
                 }
 
 

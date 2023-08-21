@@ -22,7 +22,6 @@ builder.Services.AddSwaggerConfiguration();
 builder.Services.AddDbConfig(builder.Configuration);
 builder.Services.AddServices();
 
-builder.Services.AddScoped<ITestScoreRepository, TestScoreRepository>();
 builder.Services.AddScoped<ITestScoresService, TestScoreService>();
 
 

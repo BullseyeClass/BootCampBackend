@@ -18,7 +18,7 @@ namespace BootCamp.API.Controllers
             _testScoresService = testScoreService;
         }
 
-        [HttpGet("TraineeId")]
+        [HttpGet("{id}")]
         [ProducesResponseType(typeof(GenericResponse<TestScoreResponseDTO>), 200)]
         public async Task<IActionResult> GetAddresses(string id)
         {

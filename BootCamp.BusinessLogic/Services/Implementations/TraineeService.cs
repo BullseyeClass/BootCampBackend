@@ -101,6 +101,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             }
         }
 
+
         public async Task<GenericResponse<List<AddressDTO>>> GetAddressAsync(string id)
         {
             var trainee = await _myAppContext.Users
@@ -125,7 +126,9 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             return GenericResponse<List<AddressDTO>>.SuccessResponse(result);
         }
 
-      public async Task<GenericResponse<string>> UpdatePhoneNumberAsync(string phonenumberId, PhoneNumberDTO newPhoneNumber)
+
+
+        public async Task<GenericResponse<string>> UpdatePhoneNumberAsync(string phonenumberId, PhoneNumberDTO newPhoneNumber)
         {
             if (!Guid.TryParse(phonenumberId, out Guid phoneNumberGuid))
             {
@@ -145,7 +148,6 @@ namespace BootCamp.BusinessLogic.Services.Implementations
 
             return GenericResponse<string>.SuccessResponse("Phone number updated successfully.");
         }
-
 
 
         public async Task<GenericResponse<string>> AddPhoneNumberAsync(string traineeId, PhoneNumberDTO phoneNumberDTO)
@@ -178,6 +180,24 @@ namespace BootCamp.BusinessLogic.Services.Implementations
                 return GenericResponse<string>.ErrorResponse(errors, false);
             }
 
+        }
+
+        public async Task<GenericResponse<string>> UpdateTraineeAsync(string traineeId, TraineeUpdateDTO traineeUpdateDTO)
+        {
+            var trainee = await _userManager.Users.FirstOrDefaultAsync(a => a.Id == traineeId);
+
+            if (trainee == null)
+            {
+                return GenericResponse<string>.ErrorResponse("Trainee not found.", false);
+            }
+
+            trainee.FirstName = traineeUpdateDTO.FirstName;
+            trainee.LastName = traineeUpdateDTO.LastName;
+            trainee.MiddleName = traineeUpdateDTO.MiddleName;
+
+            await _userManager.UpdateAsync(trainee);
+
+            return GenericResponse<string>.SuccessResponse("Phone number updated successfully.");
         }
 
 

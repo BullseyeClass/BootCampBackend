@@ -99,10 +99,31 @@ namespace BootCamp.API.Controllers
 
             return BadRequest(response);
         }
-    }
+
+
+        [HttpPut("updateTrainee/{traineeId}")]
+        [ProducesResponseType(typeof(GenericResponse<string>), 200)]
+        public async Task<IActionResult> UpdateTraineeAsync(string traineeId, [FromBody] TraineeUpdateDTO traineeUpdateDTO)
+        {
+
+            if (string.IsNullOrEmpty(traineeId) || traineeUpdateDTO == null)
+            {
+                return BadRequest("Invalid input data.");
+            }
+
+            var result = await _traineeService.UpdateTraineeAsync(traineeId, traineeUpdateDTO);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
 
 
 
     }
+    
 }
 
