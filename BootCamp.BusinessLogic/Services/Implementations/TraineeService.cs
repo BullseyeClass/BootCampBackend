@@ -24,7 +24,6 @@ namespace BootCamp.BusinessLogic.Services.Implementations
         private readonly UserManager<Trainee> _userManager;
         private readonly IGenericRepo<Trainee> _genericRepo;
         private readonly MyAppContext _myAppContext;
-        private readonly DbContext _dbContext;
 
 
         public TraineeService(UserManager<Trainee> userManager, IGenericRepo<Trainee> genericRepo, MyAppContext myAppContext)
