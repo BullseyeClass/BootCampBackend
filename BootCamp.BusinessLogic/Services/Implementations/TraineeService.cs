@@ -143,6 +143,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             }
 
             phoneNumber.Number = newPhoneNumber.Number;
+            phoneNumber.Extension = newPhoneNumber.Extension;   
 
             await _myAppContext.SaveChangesAsync();
 
