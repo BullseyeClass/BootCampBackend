@@ -25,6 +25,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
         private readonly IGenericRepo<Trainee> _genericRepo;
         private readonly MyAppContext _myAppContext;
 
+
         public TraineeService(UserManager<Trainee> userManager, IGenericRepo<Trainee> genericRepo, MyAppContext myAppContext)
         {
             _userManager = userManager;
@@ -33,12 +34,13 @@ namespace BootCamp.BusinessLogic.Services.Implementations
         }
 
 
+
         public async Task<GenericResponse<TraineeRegistrationResponseDTO>> RegistrationAsync(TraineeRegistrationDTO traineeRegistrationDTO)
         {
             Trainee trainee = new Trainee()
             {
                 Email = traineeRegistrationDTO.Email,
-                UserName = traineeRegistrationDTO.Email.Split('@')[0], 
+                UserName = traineeRegistrationDTO.Email.Split('@')[0],
                 EmailConfirmed = true
             };
 
@@ -51,7 +53,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
                 {
                     Id = trainee.Id,
                     Email = traineeRegistrationDTO.Email,
-                    FullName = $"{trainee.FirstName} {trainee.LastName}", 
+                    FullName = $"{trainee.FirstName} {trainee.LastName}",
                     Token = emailToken
                 };
 
@@ -74,7 +76,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
                 return GenericResponse<string>.ErrorResponse("Trainee not found.", false);
             }
 
-            
+
             var newAddress = new Address
             {
                 PostalCode = addressDto.PostalCode,
@@ -104,7 +106,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             var trainee = await _myAppContext.Users
                 .Include(t => t.Address)
                 .FirstOrDefaultAsync(t => t.Id == id);
-                
+
 
             if (trainee == null)
             {
@@ -123,23 +125,27 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             return GenericResponse<List<AddressDTO>>.SuccessResponse(result);
         }
 
-        public async Task<GenericResponse<string>> UpdatePhoneNumberAsync(string traineeId, PhoneNumberDTO newPhoneNumber)
+      public async Task<GenericResponse<string>> UpdatePhoneNumberAsync(string phonenumberId, PhoneNumberDTO newPhoneNumber)
         {
-            var trainee = _userManager.Users.FirstOrDefault(t => t.Id == traineeId);
-
-            if (trainee == null)
+            if (!Guid.TryParse(phonenumberId, out Guid phoneNumberGuid))
             {
-                return GenericResponse<string>.ErrorResponse("Trainee not found.", false);
+                return GenericResponse<string>.ErrorResponse("Invalid phone number id format.", false);
             }
 
-            // Update phone number
-            trainee.PhoneNumber = newPhoneNumber.Number;
+            var phoneNumber = _myAppContext.PhoneNumbers.FirstOrDefault(p => p.Id == phoneNumberGuid);
 
-            // Save changes
-            await _userManager.UpdateAsync(trainee);
+            if (phoneNumber == null)
+            {
+                return GenericResponse<string>.ErrorResponse("Phone number not found.", false);
+            }
+
+            phoneNumber.Number = newPhoneNumber.Number;
+
+            await _myAppContext.SaveChangesAsync();
 
             return GenericResponse<string>.SuccessResponse("Phone number updated successfully.");
         }
+
 
 
         public async Task<GenericResponse<string>> AddPhoneNumberAsync(string traineeId, PhoneNumberDTO phoneNumberDTO)
@@ -175,8 +181,10 @@ namespace BootCamp.BusinessLogic.Services.Implementations
         }
 
 
+
     }
 }
+
 
 
 
