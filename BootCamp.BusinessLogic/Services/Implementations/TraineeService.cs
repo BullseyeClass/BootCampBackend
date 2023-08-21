@@ -146,16 +146,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             return GenericResponse<string>.SuccessResponse("Phone number updated successfully.");
         }
 
-
-
-        public async Task<GenericResponse<string>> AddPhoneNumberAsync(string traineeId, PhoneNumberDTO phoneNumberDTO)
-        {
-            var trainee = await _userManager.FindByIdAsync(traineeId);
-
-            if (trainee == null)
-            {
-                return GenericResponse<string>.ErrorResponse("Trainee not found.", false);
-            }
+    }
 
 
             var newphoneNumber = new PhoneNumber
@@ -180,27 +171,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
 
         }
 
-<<<<<<< HEAD
-        public async Task<GenericResponse<string>> UpdateTraineeAsync(string traineeId, TraineeUpdateDTO traineeUpdateDTO)
-        {
-            var trainee = await _userManager.Users.FirstOrDefaultAsync(a => a.Id == traineeId);
 
-            if (trainee == null)
-            {
-                return GenericResponse<string>.ErrorResponse("Trainee not found.", false);
-            }
-
-            trainee.FirstName = traineeUpdateDTO.FirstName;
-            trainee.LastName = traineeUpdateDTO.LastName;
-            trainee.MiddleName = traineeUpdateDTO.MiddleName;
-
-            await _userManager.UpdateAsync(trainee);
-
-            return GenericResponse<string>.SuccessResponse("Phone number updated successfully.");
-        }
-=======
-
->>>>>>> Beta
 
     }
 }
