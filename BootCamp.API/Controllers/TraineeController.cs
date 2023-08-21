@@ -82,6 +82,21 @@ namespace BootCamp.API.Controllers
 
             return BadRequest(response);
         }
+
+
+        [HttpPost("{id}/add PhoneNumber")]
+        [ProducesResponseType(typeof(GenericResponse<string>), 200)]
+        public async Task<IActionResult> AddPhoneNumber(string id, [FromBody] PhoneNumberDTO phoneNumberDTO)
+        {
+            var response = await _traineeService.AddPhoneNumberAsync(id, phoneNumberDTO);
+
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+
+            return BadRequest(response);
+        }
     }
 
 }
