@@ -18,18 +18,18 @@ namespace BootCamp.API.Controllers
             _testScoresService = testScoreService;
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet("TraineeId")]
         [ProducesResponseType(typeof(GenericResponse<TestScoreResponseDTO>), 200)]
-        public IActionResult GetTestScoresByUserId(Guid userId)
+        public async Task<IActionResult> GetAddresses(string id)
         {
-            var testScores =  _testScoresService.GetTestScoresByUserId(userId);
+            var response = await _testScoresService.GetByIdAsync(id);
 
-            if (testScores == null || testScores.Count == 0)
+            if (response.Success)
             {
-                return NotFound();
+                return Ok(response);
             }
+            return BadRequest(response);
 
-            return Ok(testScores);
         }
 
 
