@@ -55,25 +55,42 @@ namespace BootCamp.API.Controllers
         {
             var response = await _traineeService.GetAddressAsync(id);
 
-            if(response.Success)
+            if (response.Success)
             {
                 return Ok(response);
             }
             return BadRequest(response);
-      
+
         }
 
-        [HttpPut("updatePhoneNumber/{traineeId}")]
+        [HttpPut("updatePhoneNumber/{phonenumberId}")]
         [ProducesResponseType(typeof(GenericResponse<string>), 200)]
-        public async Task<IActionResult> UpdatePhoneNumberAsync(string traineeId, [FromBody] PhoneNumberDTO newPhoneNumber)
+        public async Task<IActionResult> UpdatePhoneNumberAsync(string phonenumberId, [FromBody] PhoneNumberDTO newPhoneNumber)
         {
-            // Validate traineeId and newPhoneNumber
-            if (string.IsNullOrEmpty(traineeId) || newPhoneNumber == null)
+            // Validate phonenumberId and newPhoneNumber
+            if (string.IsNullOrEmpty(phonenumberId) || newPhoneNumber == null)
             {
                 return BadRequest("Invalid input data.");
             }
 
-            var response = await _traineeService.UpdatePhoneNumberAsync(traineeId, newPhoneNumber);
+            var response = await _traineeService.UpdatePhoneNumberAsync(phonenumberId, newPhoneNumber);
+
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+
+            return BadRequest(response);
+        }
+
+
+
+
+        [HttpPost("{id}/add PhoneNumber")]
+        [ProducesResponseType(typeof(GenericResponse<string>), 200)]
+        public async Task<IActionResult> AddPhoneNumber(string id, [FromBody] PhoneNumberDTO phoneNumberDTO)
+        {
+            var response = await _traineeService.AddPhoneNumberAsync(id, phoneNumberDTO);
 
             if (response.Success)
             {
@@ -106,5 +123,8 @@ namespace BootCamp.API.Controllers
 
     }
 
+
+
+    }
 }
 
