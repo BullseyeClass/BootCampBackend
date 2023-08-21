@@ -145,17 +145,45 @@ namespace BootCamp.BusinessLogic.Services.Implementations
 
             return GenericResponse<string>.SuccessResponse("Phone number updated successfully.");
         }
+
+
+
+        public async Task<GenericResponse<string>> AddPhoneNumberAsync(string traineeId, PhoneNumberDTO phoneNumberDTO)
+        {
+            var trainee = await _userManager.FindByIdAsync(traineeId);
+
+            if (trainee == null)
+            {
+                return GenericResponse<string>.ErrorResponse("Trainee not found.", false);
+            }
+
+
+            var newphoneNumber = new PhoneNumber
+            {
+                Extension = phoneNumberDTO.Extension,
+                Number = phoneNumberDTO.Number
+            };
+
+            trainee.PhoneNumbers.Add(newphoneNumber);
+
+            var result = await _userManager.UpdateAsync(trainee);
+
+            if (result.Succeeded)
+            {
+                return GenericResponse<string>.SuccessResponse("Address added successfully");
+            }
+            else
+            {
+                string errors = result.Errors.Aggregate(string.Empty, (current, error) => current + (error.Description + Environment.NewLine));
+                return GenericResponse<string>.ErrorResponse(errors, false);
+            }
+
+        }
+
+
+
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 

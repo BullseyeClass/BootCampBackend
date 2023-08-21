@@ -35,13 +35,34 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             }
 
 
-            public List<Test> GetTestScoresByUserId(Guid userId)
+            public async Task<GenericResponse<List<TestScoreResponseDTO>>> GetByIdAsync(string id)
             {
-                List<Test> testScore = new(); /*_testScoreRepository.GetTestScoresByUserId(userId);
-*/
-                return testScore;
+
+                var trainee = await _dbContext.Users
+                .Include(t => t.Tests)
+                .FirstOrDefaultAsync(t => t.Id == id);
+                //var testScores = await _genericRepo.GetByIdAysnc(id);
+
+                //var trainee = await _userManager.FindByIdAsync(testScores.TraineeId);
+
+                if (trainee == null)
+                {
+                    throw new ArgumentException("Trainee not found");
+                }
+
+
+                var testScoreDTOs = trainee.Tests.Select(a => new TestScoreResponseDTO
+                {
+                    Id = a.StudentId,
+                    TestType = a.TestType,
+                    Score = a.Score,
+                    IsPassed = a.IsPassed
+                }).ToList();
+
+                return GenericResponse<List<TestScoreResponseDTO>>.SuccessResponse(testScoreDTOs, "Test score succesful");
 
             }
+
 
             public async Task<GenericResponse<TestResultDTO>> PostTestScoreAsync(TestResultDTO testResultDTO)
             {
