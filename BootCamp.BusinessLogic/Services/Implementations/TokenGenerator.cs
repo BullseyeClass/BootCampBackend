@@ -43,7 +43,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
             }
 
             var signingKey = new SymmetricSecurityKey
-                (Encoding.UTF8.GetBytes(_configuration["JWTSettings:Secretkey"]));
+                (Encoding.UTF8.GetBytes(_configuration["JWTSettings:SecretKey"]));
             var token = new JwtSecurityToken(audience: _configuration["JWTSettings:Audience"],
                 issuer: _configuration["JWTSettings:Issuer"],
                 claims: authClaims,
