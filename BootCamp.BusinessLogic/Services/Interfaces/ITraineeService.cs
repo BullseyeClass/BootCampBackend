@@ -17,9 +17,9 @@ namespace BootCamp.BusinessLogic.Services.Interfaces
 
         Task<GenericResponse<string>> UpdatePhoneNumberAsync(string phonenumberId, PhoneNumberDTO newPhoneNumber);
 
-        Task<GenericResponse<string>> AddPhoneNumberAsync(string traineeId, PhoneNumberDTO phoneNumberDTO);
+        Task<GenericResponse<string>> AddPhoneNumberAsync(PhoneNumberDTO phoneNumberDTO);
 
-        Task<GenericResponse<string>> AddAddressAsync(string traineeId, AddressDTO addressDto);
+        Task<GenericResponse<string>> AddAddressAsync(AddressDTO addressDto);
 
         Task<GenericResponse<List<AddressDTO>>> GetAddressAsync(string id);
     }

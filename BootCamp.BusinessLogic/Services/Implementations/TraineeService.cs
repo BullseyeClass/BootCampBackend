@@ -67,9 +67,9 @@ namespace BootCamp.BusinessLogic.Services.Implementations
         }
 
 
-        public async Task<GenericResponse<string>> AddAddressAsync(string traineeId, AddressDTO addressDto)
+        public async Task<GenericResponse<string>> AddAddressAsync(AddressDTO addressDto)
         {
-            var trainee = await _userManager.FindByIdAsync(traineeId);
+            var trainee = await _userManager.FindByIdAsync(addressDto.TraineeId);
 
             if (trainee == null)
             {
@@ -83,7 +83,8 @@ namespace BootCamp.BusinessLogic.Services.Implementations
                 MainAddress = addressDto.MainAddress,
                 City = addressDto.City,
                 State = addressDto.State,
-                Country = addressDto.Country
+                Country = addressDto.Country,
+                TraineeId = addressDto.TraineeId
             };
 
             trainee.Address.Add(newAddress);
@@ -151,9 +152,9 @@ namespace BootCamp.BusinessLogic.Services.Implementations
         }
 
 
-        public async Task<GenericResponse<string>> AddPhoneNumberAsync(string traineeId, PhoneNumberDTO phoneNumberDTO)
+        public async Task<GenericResponse<string>> AddPhoneNumberAsync(PhoneNumberDTO phoneNumberDTO)
         {
-            var trainee = await _userManager.FindByIdAsync(traineeId);
+            var trainee = await _userManager.FindByIdAsync(phoneNumberDTO.TraineeId);
 
             if (trainee == null)
             {

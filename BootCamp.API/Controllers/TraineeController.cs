@@ -1,12 +1,17 @@
 ﻿using BootCamp.BusinessLogic.Services.Interfaces;
+using BootCamp.BusinessLogic.Utilities;
 using BootCamp.DTO;
 using BootCamp.DTO.Request;
 using BootCamp.DTO.Response;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
 
 namespace BootCamp.API.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class TraineeController : ControllerBase
@@ -34,11 +39,15 @@ namespace BootCamp.API.Controllers
             return BadRequest(response);
         }
 
-        [HttpPost("{id}/add-address")]
+        [Authorize]
+        [HttpPost("addAddress")]
         [ProducesResponseType(typeof(GenericResponse<string>), 200)]
-        public async Task<IActionResult> AddAddress(string id, [FromBody] AddressDTO addressDto)
+        public async Task<IActionResult> AddAddress([FromBody] AddressDTO addressDto)
         {
-            var response = await _traineeService.AddAddressAsync(id, addressDto);
+            var traineeId = HttpContext.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value;
+
+            addressDto.TraineeId = traineeId;
+            var response = await _traineeService.AddAddressAsync(addressDto);
 
             if (response.Success)
             {
@@ -53,6 +62,7 @@ namespace BootCamp.API.Controllers
         [ProducesResponseType(typeof(GenericResponse<string>), 200)]
         public async Task<IActionResult> GetAddresses(string id)
         {
+            
             var response = await _traineeService.GetAddressAsync(id);
 
             if (response.Success)
@@ -88,9 +98,12 @@ namespace BootCamp.API.Controllers
 
         [HttpPost("{id}/add PhoneNumber")]
         [ProducesResponseType(typeof(GenericResponse<string>), 200)]
-        public async Task<IActionResult> AddPhoneNumber(string id, [FromBody] PhoneNumberDTO phoneNumberDTO)
+        public async Task<IActionResult> AddPhoneNumber([FromBody] PhoneNumberDTO phoneNumberDTO)
         {
-            var response = await _traineeService.AddPhoneNumberAsync(id, phoneNumberDTO);
+            var traineeId = HttpContext.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value;
+
+            phoneNumberDTO.TraineeId = traineeId;
+            var response = await _traineeService.AddPhoneNumberAsync(phoneNumberDTO);
 
             if (response.Success)
             {
