@@ -5,13 +5,12 @@ using BootCamp.DTO;
 using Microsoft.AspNetCore.Mvc;
 using BootCamp.Data.Entities;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BootCamp.API.Controllers
 {
     [ApiController]
-
     [Route("api/[controller]")]
-
     public class TestScoreController : ControllerBase
     {
         private readonly ITestScoresService _testScoresService;
@@ -36,14 +35,14 @@ namespace BootCamp.API.Controllers
         }
 
 
-
+        [Authorize]
         [HttpPost("post")]
-        [ProducesResponseType(typeof(GenericResponse<TestResultDTO>), 200)]
+        [ProducesResponseType(typeof(GenericResponse<string>), 200)]
         public async Task<IActionResult> PostTestScore([FromBody] TestResultDTO testResultDTO)
         {
-            //var traineeId = HttpContext.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            var traineeId = HttpContext.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value;
 
-            //testResultDTO.TraineeId = traineeId;
+            testResultDTO.TraineeId = traineeId;
             var testScores = await _testScoresService.PostTestScoreAsync(testResultDTO);
             if (testScores == null)
             {
