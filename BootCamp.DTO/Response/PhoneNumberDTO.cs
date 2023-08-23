@@ -14,6 +14,6 @@ namespace BootCamp.DTO.Response
         public string Number { get; set; }
 
         [JsonIgnore]
-        public string TraineeId { get; set; }
+        public string? TraineeId { get; set; }
     }
 }

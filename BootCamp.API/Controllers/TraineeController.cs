@@ -95,8 +95,8 @@ namespace BootCamp.API.Controllers
 
 
 
-
-        [HttpPost("{id}/add PhoneNumber")]
+        [Authorize]
+        [HttpPost("addPhoneNumber")]
         [ProducesResponseType(typeof(GenericResponse<string>), 200)]
         public async Task<IActionResult> AddPhoneNumber([FromBody] PhoneNumberDTO phoneNumberDTO)
         {
