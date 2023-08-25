@@ -19,7 +19,7 @@ namespace BootCamp.Data.Entities
         {
             get
             {
-                return Score < 11 ? true : false;
+                return Score > 11 ? true : false;
             }
         }
         public string TraineeId { get; set; }
