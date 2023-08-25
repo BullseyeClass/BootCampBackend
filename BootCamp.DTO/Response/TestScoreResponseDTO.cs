@@ -14,6 +14,7 @@ namespace BootCamp.DTO.Response
         public string TestType { get; set; }
         public int Score { get; set; }
         public bool IsPassed { get; set; }
+        public string TraineId { get; set; }
 
     }
 }

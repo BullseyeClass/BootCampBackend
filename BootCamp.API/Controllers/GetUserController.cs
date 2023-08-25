@@ -42,10 +42,12 @@ namespace BootCamp.API.Controllers
                 FirstName = trainee.FirstName,
                 LastName = trainee.LastName,
                 MiddleName = trainee.MiddleName,
+                TraineeId = trainee.Id,
                 PhoneNumbers = trainee.PhoneNumbers.Select(p => new PhoneNumberDTO
                 {
                     Extension = p.Extension,
-                    Number = p.Number
+                    Number = p.Number,
+                   
                 }).ToList(),
 
                 Address = trainee.Address.Select(a => new AddressDTO
@@ -60,7 +62,8 @@ namespace BootCamp.API.Controllers
                 {
                     Score = t.Score,
                     TestType = t.TestType,
-                    IsPassed = t.IsPassed
+                    IsPassed = t.IsPassed,
+                    //TraineId = t.TraineeId.ToString(),
                 }).ToList(),
             };
             return Ok(details);

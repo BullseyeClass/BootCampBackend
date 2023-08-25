@@ -72,7 +72,7 @@ namespace BootCamp.BusinessLogic.Services.Implementations
 
             var test = new Test
             {
-                StudentId = testResultDTO.StudentId,
+                StudentId = Guid.NewGuid().ToString(),
                 Score = testResultDTO.Score,
                 CreatedDate = DateTime.Now,
                 CreatedBy = trainee.Id,

@@ -14,7 +14,8 @@ namespace BootCamp.DTO.Response
 {
     public class TestResultDTO
     {
-        public string StudentId { get; set; }
+		//[JsonIgnore]
+		//public string StudentId { get; set; }
         public int Score { get; set; }
         public string TestType { get; set;}
 
