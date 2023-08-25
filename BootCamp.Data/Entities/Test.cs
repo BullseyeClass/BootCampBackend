@@ -10,7 +10,7 @@ namespace BootCamp.Data.Entities
 {
     public class Test : Common
     {
-        public string StudentId { get; set; }
+        public string? StudentId { get; set;}
         public int Score { get; set; }
         public string TestType { get; set; }
        
