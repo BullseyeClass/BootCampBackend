@@ -9,6 +9,7 @@ using BootCamp.Data.Repository.Interface;
 using BootCamp.Data.Seed;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 //using static BootCamp.BusinessLogic.Services.Implementations.TestScoresService;
@@ -24,8 +25,14 @@ builder.Services.AddEndpointsApiExplorer();
 //builder.Services.ConfigureAuthentication(builder.Configuration);
 builder.Services.ConfigureIdentity();
 builder.Services.AddSwaggerConfiguration();
-builder.Services.AddDbConfig(builder.Configuration);
+//builder.Services.AddDbConfig(builder.Configuration);
 builder.Services.AddServices();
+
+var connectionString = builder.Configuration.GetConnectionString(name: "DefaultConnection");
+builder.Services.AddDbContext<MyAppContext>(options =>
+{
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
 
 builder.Services.AddAuthentication(options =>
 {
